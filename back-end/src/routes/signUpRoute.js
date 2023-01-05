@@ -1,6 +1,6 @@
-import { getDbConnection } from "../db";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { getDbConnection } from "../db";
 
 export const signUpRoute = {
   path: "/api/signup",
@@ -19,7 +19,7 @@ export const signUpRoute = {
 
     const startingInfo = {
       hairColor: "",
-      favouriteFood: "",
+      favoriteFood: "",
       bio: "",
     };
 
@@ -29,17 +29,16 @@ export const signUpRoute = {
       info: startingInfo,
       isVerified: false,
     });
-
-    const { insertdId } = result;
+    const { insertedId } = result;
 
     jwt.sign(
       {
-        id: insertdId,
+        id: insertedId,
         email,
         info: startingInfo,
         isVerified: false,
       },
-      process.env.JTW_SECRET,
+      process.env.JWT_SECRET,
       {
         expiresIn: "2d",
       },
