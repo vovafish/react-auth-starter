@@ -1,5 +1,5 @@
 import { getDbConnection } from "../db";
-import bcrypt from "brycpt";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const signUpRoute = {
@@ -31,5 +31,24 @@ export const signUpRoute = {
     });
 
     const { insertdId } = result;
+
+    jwt.sign(
+      {
+        id: insertdId,
+        email,
+        info: startingInfo,
+        isVerified: false,
+      },
+      process.env.JTW_SECRET,
+      {
+        expiresIn: "2d",
+      },
+      (err, token) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        res.status(200).json({ token });
+      }
+    );
   },
 };
