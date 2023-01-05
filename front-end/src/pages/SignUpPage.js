@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-export const LogInPage = () => {
+export const SignUpPage = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState();
 
   const history = useHistory();
 
-  const onLogInClicked = async () => {
-    alert("Login");
+  const onSignUpClicked = async () => {
+    alert("SignUp");
   };
 
   return (
     <div className="content-container">
-      <h1>Log In</h1>
+      <h1>Sign Up</h1>
       {/* If error msg exist display it */}
       {errorMessage && <div className="fail">{errorMessage}</div>}
       <input
@@ -28,15 +30,25 @@ export const LogInPage = () => {
         value={passwordValue}
         onChange={(e) => setPasswordValue(e.target.value)}
       />
+      <input
+        type="password"
+        placeholder="Cofirm password"
+        value={confirmPasswordValue}
+        onChange={(e) => setConfirmPasswordValue(e.target.value)}
+      />
       <hr />
-      <button disabled={!emailValue || !passwordValue} onClick={onLogInClicked}>
-        Log In
+      <button
+        disabled={
+          !emailValue ||
+          !passwordValue ||
+          passwordValue !== confirmPasswordValue
+        }
+        onClick={onSignUpClicked}
+      >
+        Sign Up
       </button>
-      <button onClick={() => history.push("/forgot-password")}>
-        Forgot Your Password?
-      </button>
-      <button onClick={() => history.push("/signup")}>
-        Don't have an account? Sign Ups!
+      <button onClick={() => history.push("/login")}>
+        Already have an account? Login!
       </button>
     </div>
   );
