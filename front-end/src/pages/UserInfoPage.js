@@ -5,10 +5,9 @@ import { useToken } from "../auth/useToken";
 import { useUser } from "../auth/useUser";
 
 export const UserInfoPage = () => {
-  //gets user info from the token
   const user = useUser();
-
   const [token, setToken] = useToken();
+
   const { id, email, info } = user;
 
   // We'll use the history to navigate the user
@@ -54,9 +53,9 @@ export const UserInfoPage = () => {
       );
 
       const { token: newToken } = response.data;
-      setToken(token);
+      setToken(newToken);
       setShowSuccessMessage(true);
-    } catch (e) {
+    } catch (error) {
       setShowErrorMessage(true);
     }
   };
@@ -68,7 +67,6 @@ export const UserInfoPage = () => {
   };
 
   const resetValues = () => {
-    //reset to the inial value loaded from the server
     setFavoriteFood(info.favoriteFood);
     setHairColor(info.hairColor);
     setBio(info.bio);
