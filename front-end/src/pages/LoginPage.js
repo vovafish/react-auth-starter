@@ -1,43 +1,37 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export const LogInPage = () => {
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
 
-  const history = useHistory();
+    const [emailValue, setEmailValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
 
-  const onLogInClicked = async () => {
-    alert("Login");
-  };
+    const history = useHistory();
 
-  return (
-    <div className="content-container">
-      <h1>Log In</h1>
-      {/* If error msg exist display it */}
-      {errorMessage && <div className="fail">{errorMessage}</div>}
-      <input
-        placeholder="someone@gmail.com"
-        value={emailValue}
-        onChange={(e) => setEmailValue(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        value={passwordValue}
-        onChange={(e) => setPasswordValue(e.target.value)}
-      />
-      <hr />
-      <button disabled={!emailValue || !passwordValue} onClick={onLogInClicked}>
-        Log In
-      </button>
-      <button onClick={() => history.push("/forgot-password")}>
-        Forgot Your Password?
-      </button>
-      <button onClick={() => history.push("/signup")}>
-        Don't have an account? Sign Ups!
-      </button>
-    </div>
-  );
-};
+    const onLogInClicked = async () => {
+        alert('Log in not implemented yet');
+    }
+
+    return (
+        <div className="content-container">
+            <h1>Log In</h1>
+            {errorMessage && <div className="fail">{errorMessage}</div>}
+            <input
+                value={emailValue}
+                onChange={e => setEmailValue(e.target.value)}
+                placeholder="someone@gmail.com" />
+            <input
+                type="password"
+                value={passwordValue}
+                onChange={e => setPasswordValue(e.target.value)}
+                placeholder="password" />
+            <hr />
+            <button
+                disabled={!emailValue || !passwordValue}
+                onClick={onLogInClicked}>Log In</button>
+            <button onClick={() => history.push('/forgot-password')}>Forgot your password?</button>
+            <button onClick={() => history.push('/signup')}>Don't have an account? Sign Up</button>
+        </div>
+    );
+}
