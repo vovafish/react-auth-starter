@@ -5,6 +5,7 @@ import { useToken } from "../auth/useToken";
 
 export const SignUpPage = () => {
   const [token, setToken] = useToken();
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const [emailValue, setEmailValue] = useState("");
