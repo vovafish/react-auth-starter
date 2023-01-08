@@ -41,10 +41,10 @@ export const signUpRoute = {
         to: email,
         from: "P2601563@my365.dmu.ac.uk",
         subject: "Please verify your email",
-        test: `
-          Thanks for signing up! Verify your email here:
-          http://localhost:3000/verify-email/${verificationString}
-        `,
+        text: `
+                    Thanks for signing up! To verify your email, click here:
+                    http://localhost:3000/verify-email/${verificationString}
+                `,
       });
     } catch (e) {
       console.log(e);

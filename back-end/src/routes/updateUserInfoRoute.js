@@ -31,12 +31,13 @@ export const updateUserInfoRoute = {
         return res
           .status(403)
           .json({ message: "Not allowed to update that user's data" });
-
       if (!isVerified)
-        return res.status(403).json({
-          message:
-            "You need to verify your email before you can update your data",
-        });
+        return res
+          .status(403)
+          .json({
+            message:
+              "You need to verify your email before you can update your data",
+          });
 
       const db = getDbConnection("react-auth-db");
       const result = await db
