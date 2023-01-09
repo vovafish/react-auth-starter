@@ -13,7 +13,6 @@ export const LogInPage = () => {
   const [passwordValue, setPasswordValue] = useState("");
 
   const [googleOauthUrl, setGoogleOauthUrl] = useState("");
-
   const { token: oauthToken } = useQueryParams();
 
   const history = useHistory();
@@ -28,7 +27,7 @@ export const LogInPage = () => {
   useEffect(() => {
     const loadOauthUrl = async () => {
       try {
-        const response = await axios.get("auth/google/url");
+        const response = await axios.get("/auth/google/url");
         const { url } = response.data;
         setGoogleOauthUrl(url);
       } catch (e) {
@@ -80,7 +79,7 @@ export const LogInPage = () => {
           window.location.href = googleOauthUrl;
         }}
       >
-        Log In With Google
+        Log in with Google
       </button>
     </div>
   );

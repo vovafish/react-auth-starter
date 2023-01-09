@@ -6,11 +6,11 @@ export const googleOauthCallbackRoute = {
   path: "/auth/google/callback",
   method: "get",
   handler: async (req, res) => {
-    const { code } = req.body;
+    const { code } = req.query;
 
     const oauthUserInfo = await getGoogleUser({ code });
-    const updateUser = await updateOrCreateUserFromOauth(oauthUserInfo);
-    const { _id: id, isVerified, email, info } = updateUser;
+    const updatedUser = await updateOrCreateUserFromOauth({ oauthUserInfo });
+    const { _id: id, isVerified, email, info } = updatedUser;
 
     jwt.sign(
       { id, isVerified, email, info },
